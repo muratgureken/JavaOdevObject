@@ -37,6 +37,8 @@ public class Runner {
 		ben.getBaba().getBaba().setBaba(new SoyAgaci());
 		ben.getBaba().getBaba().getBaba().setAdi("BB Babasý");
 		
+		System.out.println("SOYAGACI");
+		
 		System.out.print("\t");
 		System.out.print("\t");
 		System.out.print("\t");		
@@ -87,5 +89,6 @@ public class Runner {
 		System.out.print(ben.getBaba().getBaba().getAnne().getAdi());
 		System.out.print("\t");
 		System.out.print(ben.getBaba().getBaba().getBaba().getAdi());		
+		
 	}
 }
