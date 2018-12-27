@@ -5,6 +5,16 @@ public class SoyAgaci {
 	private SoyAgaci anne;
 	private SoyAgaci baba;
 	
+	public void sayiAl(int []a,int size)
+	{
+		for(int i=0;i<size;i++)
+		{
+			System.out.print(a[i]);
+			System.out.print(" ");
+		}
+		System.out.println();
+	}
+	
 	public String getAdi() {
 		return adi;
 	}
