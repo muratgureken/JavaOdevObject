@@ -54,7 +54,7 @@ class BST{
 	
 }
 
-public class binaryTree {
+/*public class binaryTree {
 	public static void main(String[] args) {
 		BST aile= new BST();
 		Node ben = null;
@@ -67,3 +67,4 @@ public class binaryTree {
 		System.out.println(ben.anne.baba.data+" "+ben.anne.baba.adi);
 	}
 }
+*/

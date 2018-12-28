@@ -1,7 +1,10 @@
 package murat.obj.urunZinciri;
 
 public class Urun {
-	private double fiyat;
-	private int garantiSuresi;
-	private String marka;
+	double fiyat;
+	int garantiSuresi;
+	String marka;
+	String stokKodu;
+	float agirlik;
+	String renk;
 }
