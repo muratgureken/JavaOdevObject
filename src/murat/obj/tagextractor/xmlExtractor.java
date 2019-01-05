@@ -6,74 +6,75 @@ public class xmlExtractor {
 	     */
 	    public static void main(String[] args) {
 
-	        String s= "<SA premium>Imtiaz has a secret crash</SA premium>";
+	        String line= "<SA premium>Imtiaz has a secret crash</SA premium>";
+	        //line = "";
 	        String s1,s2,s3;
 	        boolean stringVar = false;
 	        int index=0, index2;
 	        int count=0;
-	        while(index<=s.length())
+	        while(index<=line.length())
 	        {
 	            count++;
 	            /*System.out.println("count:"+count);*/
-	            index2 = s.indexOf(">",index);
-	            index = s.indexOf("<",index);
+	            index2 = line.indexOf(">",index);
+	            index = line.indexOf("<",index);
 	            if(index>index2)
 	            {
-	                index2 = s.indexOf(">",index);
+	                index2 = line.indexOf(">",index);
 	            }
-	            if(IOB(index, s.length())||(IOB(index2, s.length())))
+	            if(IOB(index, line.length())||(IOB(index2, line.length())))
 	            {
 	                break;
 	            }
 	            index++;
-	            if(s.substring(index, index2).contains("<")||s.substring(index, index2).contains("/"))
+	            if(line.substring(index, index2).contains("<")||line.substring(index, index2).contains("/"))
 	            {
 	                continue;
 	            }
 
-	            s1 = s.substring(index, index2);
+	            s1 = line.substring(index, index2);
 	            if(s1.length()==0)
 	            {
 	                continue;
 	            }
 	            index = index2+1;
-	            index2 = s.indexOf("<",index2);
-	            if(IOB(index, s.length())||(IOB(index2, s.length())))
+	            index2 = line.indexOf("<",index2);
+	            if(IOB(index, line.length())||(IOB(index2, line.length())))
 	            {
 	                break;
 	            }
-	            if(s.substring(index, index2).contains(">")||s.substring(index, index2).contains("/"))
+	            if(line.substring(index, index2).contains(">")||line.substring(index, index2).contains("/"))
 	            {
 	                index = index2;
 	                continue;
 	            }
-	            s2 = s.substring(index,index2);
+	            s2 = line.substring(index,index2);
 	            if(s2.length()==0)
 	            {
 	                index = index2;
 	                continue;
 	            }            
 	            index = index2+1;
-	            if(IOB(index, s.length()))
+	            if(IOB(index, line.length()))
 	            {
 	                break;
 	            }
-	            if(!(s.substring(index, index+1).contains("/")))
+	            if(!(line.substring(index, index+1).contains("/")))
 	            {
 	                index--;
 	                continue;
 	            }
 	            index++;
-	            index2 = s.indexOf(">",index);
-	            if(IOB(index, s.length())||(IOB(index2, s.length())))
+	            index2 = line.indexOf(">",index);
+	            if(IOB(index, line.length())||(IOB(index2, line.length())))
 	            {
 	                break;
 	            }
-	            if(s.substring(index, index2).contains("<")||s.substring(index, index2).contains("/"))
+	            if(line.substring(index, index2).contains("<")||line.substring(index, index2).contains("/"))
 	            {
 	                continue;
 	            }
-	            s3 = s.substring(index,index2);
+	            s3 = line.substring(index,index2);
 	            if(s3.length()==0)
 	            {
 	                index = index2+1;
