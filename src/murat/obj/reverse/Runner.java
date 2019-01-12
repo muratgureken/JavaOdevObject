@@ -17,8 +17,6 @@ public class Runner {
 			}
 			System.out.print(kalan);
 		}
-
-
 	}
 
 }
