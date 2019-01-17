@@ -6,18 +6,22 @@ import java.util.List;
 public class Runner {
 
 	public static void main(String[] args) {
-		VectorList h = new VectorList(new Object(),4); // Hesapla yanina koseli parantez koymadigimiz icin class bizden default olarak object bekliyor.
-		VectorList<Integer> sayi = new VectorList<Integer>(3,4);
-		sayi.ekle(3,0);
-		int gelen = sayi.cikar();
-		System.out.println("gelen:"+gelen);
-		sayi.ekle(4,1);
-		sayi.ekle(5,2);
-		sayi.ekle(6,3);
-		System.out.println("tip:");
-                
+		/*VectorList h = new VectorList(5); */// Hesapla yanina koseli parantez koymadigimiz icin class bizden default olarak object bekliyor.
+		VectorList<Integer> sayi = new VectorList<Integer>(5);
+		/*int gelen = sayi.cikar();*/
+		sayi.ekle(6,0);
+		sayi.ekle(3,1);
+		sayi.ekle(1,2);
+		sayi.ekle(4,3);
+		sayi.ekle(5,4);
+		sayi.yazdir();
+		System.out.println("maks: "+sayi.maksbul());
+		
+		sayi.sirala();
+		System.out.println("siralanmis veri");
+		sayi.yazdir();
 		int toplam = (Integer)sayi.dizi[0]+(Integer)sayi.dizi[1];
-		System.out.println("Toplam:" + toplam);
+		System.out.println("Toplam:" + toplam+" dizi boy:"+sayi.boy());
 		
 		sayi.yazdir();
 		sayi.terscevir();
