@@ -14,7 +14,8 @@ public class Runner {
 		sayi.ekle(4,1);
 		sayi.ekle(5,2);
 		sayi.ekle(6,3);
-		
+		System.out.println("tip:");
+                
 		int toplam = (Integer)sayi.dizi[0]+(Integer)sayi.dizi[1];
 		System.out.println("Toplam:" + toplam);
 		
