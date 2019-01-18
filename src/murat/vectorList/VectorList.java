@@ -7,23 +7,60 @@ import java.util.Comparator;
 
 public class VectorList<T>{
 	public Object[] dizi, dizi2, dizi3;
-	int ofset; //vektorun nereden baslayacagi. constructor'da 0 olarak ilklendirilsin.
-	int indis;
+	private int ofset; //vektorun nereden baslayacagi. constructor'da 0 olarak ilklendirilsin.
+	public int indis;
+	private int boylimit;
 	private int boy;
+	private static int BOY_ARTIS=10;
 
-	public VectorList(int boy) {
-		dizi = new Object[boy];
+	public VectorList() {
+		boy = 0;
+		boylimit = BOY_ARTIS;
+		dizi = new Object[boylimit];
+		dizi2 = new Object[boylimit];
+	}
+
+	private void boylimitasimi()
+	{
+		//System.out.println("boy/limit : "+boy+" "+boylimit);
+		if(boy>boylimit)
+		{
+			boylimit = boylimit+BOY_ARTIS;
+			boy--;
+			dizi2 = new Object[boy];
+			kopyala(2);
+			dizi = new Object[boylimit];
+			kopyala(1);
+			boy++;
+		}
+
 	}
 
 	public void ekle(T gelenveri)
 	{
-		//DIKKAT range kontrol yap. boyutyetmiyorsa artirmak gerekiyor. ek fonksiyon yaz.
-		dizi[dizi.length+1] = gelenveri;
+		//System.out.println("class boyut:"+boy);
+		//limit kontrol
+		boy++;
+		boylimitasimi();
+		dizi[boy-1] = gelenveri;
 	}
-	
-	public void ekle(T gelenveri, int indis)
+
+	public boolean ekle(T gelenveri, int indis)
 	{
-		dizi[indis] = gelenveri;
+		boolean durum=false;
+		if(indis<boy)
+		{
+			boy++;
+			boylimitasimi();
+			//System.out.println("ekle boy:" +boy);
+			for(int i=boy;i>indis;i--)
+			{
+				dizi[i] = dizi[i-1];
+			}
+			dizi[indis] = gelenveri;
+			durum = true;
+		}
+		return durum;
 	}
 
 	public void degistir(int indis, int indis2)
@@ -52,7 +89,7 @@ public class VectorList<T>{
 		dizi[indis] = dizi[indis2];
 		dizi[indis2] = degisken;            
 	}
-	
+
 	private void degistir(Double[] dizi, int indis, int indis2)
 	{
 		Double degisken;
@@ -61,94 +98,116 @@ public class VectorList<T>{
 		dizi[indis] = dizi[indis2];
 		dizi[indis2] = degisken;            
 	}
-	
-	public T cikar()
+
+	public boolean cikar(int indis)
 	{		
-		//DIKKAT yeniden yaz
-		return (T)dizi[0];
+		boolean durum=false;
+
+		if(boy>0)
+		{
+			for(int i=indis;i<(boy-1);i++)
+			{
+				dizi[i] = dizi[i+1];
+			}
+			boy--;
+			durum =true;
+		}
+		return durum;
 	}
 
 	public void terscevir()
 	{
 
-		for(int i=0;i<(dizi.length)/2;i++)
+		for(int i=0;i<(boy)/2;i++)
 		{
 			T sayi;
 			sayi = (T)dizi[i];
-			dizi[i] = dizi[(dizi.length)-i-1];
+			dizi[i] = dizi[(boy)-i-1];
 			dizi[(dizi.length)-i-1] = sayi;
 		}
 	}
 
-	public int boy()
+	public int boyut()
 	{
-		return dizi.length;
+		return boy;
 	}
 
 	public T  maksbul()
 	{        	
 		T sonuc=null; 
 
-		if(dizi[0].getClass().toString().contains("Integer"))
+		if(boy>0)
 		{
-			Integer[] dizi1 = new Integer[this.dizi.length];
-			Kopyala(dizi1,1);
-			Integer sonuc1 = maksbul(dizi1);
-			sonuc = (T)sonuc1;
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				Integer[] dizi1 = new Integer[boy];
+				Kopyala(dizi1,1);
+				Integer sonuc1 = maksbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				Float[] dizi1 = new Float[boy];
+				Kopyala(dizi1,1);
+				Float sonuc1 = maksbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				Double[] dizi1 = new Double[boy];
+				Kopyala(dizi1,1);;
+				Double sonuc1 = maksbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
 		}
-		else if(dizi[0].getClass().toString().contains("Float"))
-		{
-			Float[] dizi1 = new Float[this.dizi.length];
-			Kopyala(dizi1,1);
-			Float sonuc1 = maksbul(dizi1);
-			sonuc = (T)sonuc1;
-		}
-		else if(dizi[0].getClass().toString().contains("Double"))
-		{
-			Double[] dizi1 = new Double[this.dizi.length];
-			Kopyala(dizi1,1);;
-			Double sonuc1 = maksbul(dizi1);
-			sonuc = (T)sonuc1;
-		}
-
 		return sonuc;
 	}        
-	
+
 	public T  minbul()
 	{        	
 		T sonuc=null; 
-
-		if(dizi[0].getClass().toString().contains("Integer"))
+		if(boy>0)
 		{
-			Integer[] dizi1 = new Integer[this.dizi.length];
-			Kopyala(dizi1,1);
-			Integer sonuc1 = minbul(dizi1);
-			sonuc = (T)sonuc1;
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				Integer[] dizi1 = new Integer[boy];
+				Kopyala(dizi1,1);
+				Integer sonuc1 = minbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				Float[] dizi1 = new Float[boy];
+				Kopyala(dizi1,1);
+				Float sonuc1 = minbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				Double[] dizi1 = new Double[boy];
+				Kopyala(dizi1,1);;
+				Double sonuc1 = minbul(dizi1);
+				sonuc = (T)sonuc1;
+			}
 		}
-		else if(dizi[0].getClass().toString().contains("Float"))
-		{
-			Float[] dizi1 = new Float[this.dizi.length];
-			Kopyala(dizi1,1);
-			Float sonuc1 = minbul(dizi1);
-			sonuc = (T)sonuc1;
-		}
-		else if(dizi[0].getClass().toString().contains("Double"))
-		{
-			Double[] dizi1 = new Double[this.dizi.length];
-			Kopyala(dizi1,1);;
-			Double sonuc1 = minbul(dizi1);
-			sonuc = (T)sonuc1;
-		}
-
 		return sonuc;
 	}       
 
-	public void kopyala(T[] dizi)
+	public void kopyala(int deger)
 	{
-		//DIKKAT aynen minbul maksbul gibi yap
-		for(int i=0; i<dizi.length; i++)
+		if(deger==1)
 		{
-			dizi[i] = (T)(this.dizi[i]);
+			for(int i=0; i<boy; i++)
+			{
+				dizi[i] = dizi2[i];
+			}			
+		}
+		else if(deger==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi2[i] = dizi[i];
+			}
 		}
 	}
 
@@ -156,14 +215,14 @@ public class VectorList<T>{
 	{
 		if(yon==1)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				dizi[i] = (Integer)(this.dizi[i]);
 			}
 		}
 		if(yon==2)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				this.dizi[i] = (T)(dizi[i]);
 			}
@@ -174,14 +233,14 @@ public class VectorList<T>{
 	{
 		if(yon==1)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				dizi[i] = (Float)(this.dizi[i]);
 			}
 		}
 		if(yon==2)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				this.dizi[i] = (T)(dizi[i]);
 			}
@@ -192,14 +251,14 @@ public class VectorList<T>{
 	{
 		if(yon==1)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				dizi[i] = (Double)(this.dizi[i]);
 			}
 		}
 		if(yon==2)
 		{
-			for(int i=0; i<this.dizi.length; i++)
+			for(int i=0; i<boy; i++)
 			{
 				this.dizi[i] = (T)(dizi[i]);
 			}
@@ -387,32 +446,34 @@ public class VectorList<T>{
 	{        	
 		//siralama yapamazsa false doner (type mismatch)
 		boolean durum=false;
-		
-		if(dizi[0].getClass().toString().contains("Integer"))
+
+		if(boy>0)
 		{
-			Integer[] dizi1 = new Integer[this.dizi.length];
-			Kopyala(dizi1, 1);;
-			sirala(dizi1);
-			Kopyala(dizi1, 2);
-			durum = true;
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				Integer[] dizi1 = new Integer[boy];
+				Kopyala(dizi1, 1);;
+				sirala(dizi1);
+				Kopyala(dizi1, 2);
+				durum = true;
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				Float[] dizi1 = new Float[boy];
+				Kopyala(dizi1,1);
+				sirala(dizi1);
+				Kopyala(dizi1, 2);
+				durum = true;
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				Double[] dizi1 = new Double[boy];
+				Kopyala(dizi1,1);
+				sirala(dizi1);
+				Kopyala(dizi1, 2);
+				durum = true;
+			}        
 		}
-		else if(dizi[0].getClass().toString().contains("Float"))
-		{
-			Float[] dizi1 = new Float[this.dizi.length];
-			Kopyala(dizi1,1);
-			sirala(dizi1);
-			Kopyala(dizi1, 2);
-			durum = true;
-		}
-		else if(dizi[0].getClass().toString().contains("Double"))
-		{
-			Double[] dizi1 = new Double[this.dizi.length];
-			Kopyala(dizi1,1);
-			sirala(dizi1);
-			Kopyala(dizi1, 2);
-			durum = true;
-		}        
-		
 		return durum;
 	}
 
@@ -463,7 +524,7 @@ public class VectorList<T>{
 
 	public void yazdir()
 	{
-		for (int j = 0; j < dizi.length; j++) {
+		for (int j=0; j < boy; j++) {
 			System.out.print(dizi[j]+" ");
 		}
 
@@ -472,14 +533,20 @@ public class VectorList<T>{
 
 	public T getir(int indis)
 	{
-		return (T)dizi[indis];
+		T sonuc=null;
+		if(indis<boy)
+		{
+			sonuc = (T)dizi[indis];
+		}
+
+		return sonuc;
 	}
 
 	public Boolean icerir(T aranan)
 	{
 		Boolean durum=false;
 
-		for (int i = 0; i < dizi.length; i++) {
+		for (int i = 0; i < boy; i++) {
 			if(aranan.equals(dizi[i]))
 			{
 				durum = true;
@@ -488,6 +555,6 @@ public class VectorList<T>{
 		}
 		return durum;
 	}
-	
+
 	/*toplam ekle : tum vektorun toplam degeri, String ise false don */
 }
