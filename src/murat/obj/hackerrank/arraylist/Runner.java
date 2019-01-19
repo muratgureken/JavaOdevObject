@@ -19,9 +19,7 @@ public class Runner {
 	        deger = scan.nextInt();
 	        for(int i=0; i<deger;i++)
 	        {
-	           System.out.println("hehe");
 	        	s = scan.next();
-	        	System.out.println("ne:"+s);
 	            if(s.equals("Insert"))
 	            {
 	                deger2 = scan.nextInt();
@@ -54,7 +52,7 @@ public class Runner {
 	            System.out.print(a);
 	            System.out.print(" ");
 	        }
-	            System.out.println();
+	        System.out.println();
 	    }
 
 }

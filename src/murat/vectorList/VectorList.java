@@ -480,7 +480,7 @@ public class VectorList<T>{
 		return durum;
 	}
 
-	public void sirala(Integer[] dizi)
+	private void sirala(Integer[] dizi)
 	{
 		//indisi kaybetmemek icin saklanir.
 		int indisSakla=indis;
@@ -495,7 +495,7 @@ public class VectorList<T>{
 		indis = indisSakla;
 	}
 
-	public void sirala(Float[] dizi)
+	private void sirala(Float[] dizi)
 	{
 		//indisi kaybetmemek icin saklanir.
 		int indisSakla=indis;
@@ -510,7 +510,7 @@ public class VectorList<T>{
 		indis = indisSakla;
 	}
 
-	public void sirala(Double[] dizi)
+	private void sirala(Double[] dizi)
 	{
 		//indisi kaybetmemek icin saklanir.
 		int indisSakla=indis;

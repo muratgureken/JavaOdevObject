@@ -14,25 +14,25 @@ public class Runner {
 		sayi.ekle(1,2);
 		sayi.ekle(4,3);
 		sayi.ekle(5,4);
+		sayi.ekle(6);
+		sayi.ekle(9);
 		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(3);
-		sayi.ekle(5,4);
+		sayi.ekle(1);
+		sayi.ekle(0);
+		sayi.ekle(-5);
+		sayi.ekle(-4);
+		sayi.ekle(10);
+		sayi.ekle(12);
+		sayi.ekle(-2);
+		sayi.ekle(7);
+		sayi.ekle(20);
+		sayi.ekle(2);
+		sayi.ekle(-8);
+		sayi.ekle(-11);
+		sayi.ekle(100,4);
 		System.out.println("boy:"+sayi.boyut());
 		sayi.yazdir(1);
-		System.out.println("maks: "+sayi.maksbul());
+		System.out.println("maks: "+sayi.maksbul()+" ind:"+sayi.indis);
 		
 		sayi.sirala();
 		System.out.println("siralanmis veri");
@@ -42,13 +42,12 @@ public class Runner {
 		sayi.terscevir();
 		sayi.yazdir(1);
 		Integer sayi2 = sayi.getir(1);
-		Integer sayi3 = sayi.getir(2);
 		
 		System.out.println("eleman:"+sayi2);
 		System.out.println(sayi.toString());
 		System.out.println(sayi.icerir(8));	
-		System.out.println(sayi.icerir(5));	
-		
+		System.out.println(sayi.icerir(9));	
+				
 		sayi.kopyala(2);
 		sayi.temizle();
 		sayi.ekle(2);

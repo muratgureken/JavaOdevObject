@@ -27,19 +27,13 @@ public class Runner {
 
 }
 
-class Printer
+class Printer<T>
 {
-   public void printArray(Integer[] deger)
-   {
-       for(int i=0;i<deger.length;i++)
-       {
-        System.out.println(deger[i]);
-       }
-   }
- 
-    public void printArray(String[] deger) {
-        for (int i = 0; i < deger.length; i++) {
-            System.out.println(deger[i]);
-        }
-    }
+	   public void printArray(T[] deger)
+	   {
+	       for(int i=0;i<deger.length;i++)
+	       {
+	        System.out.println(deger[i]);
+	       }
+	   }
 }
