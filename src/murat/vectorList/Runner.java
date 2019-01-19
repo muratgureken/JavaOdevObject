@@ -31,16 +31,16 @@ public class Runner {
 		sayi.ekle(3);
 		sayi.ekle(5,4);
 		System.out.println("boy:"+sayi.boyut());
-		sayi.yazdir();
+		sayi.yazdir(1);
 		System.out.println("maks: "+sayi.maksbul());
 		
 		sayi.sirala();
 		System.out.println("siralanmis veri");
-		sayi.yazdir();
+		sayi.yazdir(1);
 		
-		sayi.yazdir();
+		sayi.yazdir(1);
 		sayi.terscevir();
-		sayi.yazdir();
+		sayi.yazdir(1);
 		Integer sayi2 = sayi.getir(1);
 		Integer sayi3 = sayi.getir(2);
 		
@@ -48,6 +48,23 @@ public class Runner {
 		System.out.println(sayi.toString());
 		System.out.println(sayi.icerir(8));	
 		System.out.println(sayi.icerir(5));	
+		
+		sayi.kopyala(2);
+		sayi.temizle();
+		sayi.ekle(2);
+		sayi.ekle(4);
+		sayi.ekle(-1);
+		sayi.ekle(-5);
+		sayi.ekle(0);
+		sayi.ekle(10);
+		sayi.vtopla();
+		sayi.yazdir(3);
+		sayi.vstopla(50);
+		sayi.yazdir(3);
+		sayi.temizle();
+		System.out.println("temizlendikten sonra");
+		sayi.yazdir(1);
+		
 	}
 
 }

@@ -18,6 +18,7 @@ public class VectorList<T>{
 		boylimit = BOY_ARTIS;
 		dizi = new Object[boylimit];
 		dizi2 = new Object[boylimit];
+		dizi3 = new Object[boylimit];
 	}
 
 	private void boylimitasimi()
@@ -31,6 +32,8 @@ public class VectorList<T>{
 			kopyala(2);
 			dizi = new Object[boylimit];
 			kopyala(1);
+			dizi2 = new Object[boylimit];
+			dizi3 = new Object[boylimit];
 			boy++;
 		}
 
@@ -522,12 +525,26 @@ public class VectorList<T>{
 		indis = indisSakla;
 	}
 
-	public void yazdir()
+	public void yazdir(int tip)
 	{
-		for (int j=0; j < boy; j++) {
-			System.out.print(dizi[j]+" ");
+		if(tip==1)
+		{
+			for (int j=0; j < boy; j++) {
+				System.out.print(dizi[j]+" ");
+			}
 		}
-
+		else if(tip==2)
+		{
+			for (int j=0; j < boy; j++) {
+				System.out.print(dizi2[j]+" ");
+			}
+		}
+		else if(tip==3)
+		{
+			for (int j=0; j < boy; j++) {
+				System.out.print(dizi3[j]+" ");
+			}
+		}
 		System.out.println();
 	}
 
@@ -556,5 +573,284 @@ public class VectorList<T>{
 		return durum;
 	}
 
-	/*toplam ekle : tum vektorun toplam degeri, String ise false don */
+	public boolean vtopla()
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vtopla(1);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vtopla(2);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vtopla(3);
+			}
+		}
+		return durum;
+	} 
+
+	private void vtopla(int tip)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]+(Integer)dizi2[i];
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]+(Float)dizi2[i];
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]+(Double)dizi2[i];
+			}
+		}
+	}
+
+	public boolean vstopla(T deger)
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vstopla(1, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vstopla(2, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vstopla(3, deger);
+			}
+		}
+		return durum;
+	} 
+
+	private void vstopla(int tip, T deger)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]+(Integer)deger;
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]+(Float)deger;
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]+(Double)deger;
+			}
+		}
+	}
+	
+	public boolean vcikar()
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vcikar(1);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vcikar(2);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vcikar(3);
+			}
+		}
+		return durum;
+	} 
+
+	private void vcikar(int tip)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]-(Integer)dizi2[i];
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]-(Float)dizi2[i];
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]-(Double)dizi2[i];
+			}
+		}
+	}
+	
+	public boolean vscikar(T deger)
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vscikar(1, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vscikar(2, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vscikar(3, deger);
+			}
+		}
+		return durum;
+	} 
+
+	private void vscikar(int tip, T deger)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]-(Integer)deger;
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]-(Float)deger;
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]-(Double)deger;
+			}
+		}
+	}
+	
+	public boolean vcarp()
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vcarp(1);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vcarp(2);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vcarp(3);
+			}
+		}
+		return durum;
+	} 
+
+	private void vcarp(int tip)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]*(Integer)dizi2[i];
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]*(Float)dizi2[i];
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]*(Double)dizi2[i];
+			}
+		}
+	}
+	
+	public boolean vscarp(T deger)
+	{        	
+		boolean durum=false; 
+		if(boy>0)
+		{
+			if(dizi[0].getClass().toString().contains("Integer"))
+			{
+				vscarp(1, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Float"))
+			{
+				vscarp(2, deger);
+			}
+			else if(dizi[0].getClass().toString().contains("Double"))
+			{
+				vscarp(3, deger);
+			}
+		}
+		return durum;
+	} 
+
+	private void vscarp(int tip, T deger)
+	{
+		if(tip==1)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Integer)dizi[i]*(Integer)deger;
+			}
+		}
+		else if(tip==2)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Float)dizi[i]*(Float)deger;
+			}
+		}
+		else if(tip==3)
+		{
+			for(int i=0; i<boy; i++)
+			{
+				dizi3[i] = (Double)dizi[i]*(Double)deger;
+			}
+		}
+	}
+	
+	public void temizle()
+	{
+		boy = 0;
+	}
 }
